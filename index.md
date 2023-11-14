@@ -14,6 +14,10 @@ hide: true
 <!--- HTML for page contains <p> tag named "mario" and class properties for a "sprite"  -->
 
 <p id="mario" class="sprite"></p>
+<br><br><br>
+<p id="mario" class="sprite"></p>
+<p id="mario" class="sprite"></p>
+
   
 <!--- Embedded Cascading Style Sheet (CSS) rules, defines how HTML elements look --->
 <style>
