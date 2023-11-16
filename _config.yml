@@ -3,7 +3,7 @@ description: "August 2023 to June 2024"
 owner_name: Aiden Huynh, Toby Leeder, Ishi Singh, Ma
 github_username: aidenhuynh
 github_repo: "sortsortsort"
-baseurl: "/nighthawksorters"
+baseurl: "/sortsortsort"
 future: true
 remote_theme: jekyll/minima
 minima:
