@@ -140,11 +140,11 @@ window.onload = wrap_img;
 <script>
 
     function makeList(list){
-        for (i in list){
+        for (let i in list){
             var item = document.createElement("div");
             item.id = "item" + i;
             item.classList.add("tester");
-            item.innerHTML = i;
+            item.innerHTML = list[i];
             item.style.order = i;
             document.getElementById("container").append(item);
         }
