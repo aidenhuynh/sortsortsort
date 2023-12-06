@@ -2,9 +2,31 @@
   
     
         "post0": {
-            "title": "CSS Test",
-            "content": "",
-            "url": "http://localhost:4100/nighthawksorters/2023/11/23/csstest.html",
+            "title": "Review",
+            "content": "CSS/Frontend testing . | Algorithms testing . | Insertion testing . | .",
+            "url": "http://localhost:4000/sortsortsort/2023/12/04/review.html",
+            "relUrl": "/2023/12/04/review.html",
+            "date": " • Dec 4, 2023"
+        }
+        
+    
+  
+    
+        ,"post1": {
+            "title": "Merge Sort",
+            "content": "{ “cells”: [ { “cell_type”: “markdown”, “metadata”: {}, “source”: [ “— n”, “toc: true n”, “comments: true n”, “layout: post n”, “title: Merge Sort (For, While, Recursion) n”, “description: Merge sorting using for loops, while loops, and recursion n”, “courses: { csa: {week: ‘14’} } n”, “type: tangibles n”, “—” ] }, { “cell_type”: “code”, “execution_count”: 27, “metadata”: {}, “outputs”: [ { “name”: “stdout”, “output_type”: “stream”, “text”: [ “Original: n”, “29 86 76 83 3 50 77 81 n”, “Iteration: n”, “29 86 76 83 3 50 77 81 n”, “Iteration: n”, “29 86 76 83 3 50 77 81 n”, “Iteration: n”, “29 76 83 86 3 50 77 81 n”, “Iteration: n”, “29 76 83 86 3 50 77 81 n”, “Iteration: n”, “29 76 83 86 3 50 77 81 n”, “Iteration: n”, “29 76 83 86 3 50 77 81 n”, “Iteration: n”, “3 29 50 76 77 81 83 86 n”, “ n”, “Sorted: n”, “3 29 50 76 77 81 83 86 n” ] } ], “source”: [ “// RECURSION n”, “ n”, “import java.util.Random; n”, “ n”, “public class MergeSortR { n”, “ n”, “ void merge(int arr[], int a, int b, int c) { n”, “ int indexA = b - a + 1; n”, “ int indexB = c - b; n”, “ n”, “ int left[] = new int[indexA]; n”, “ int right[] = new int[indexB]; n”, “ n”, “ for (int i = 0; i &lt; indexA; ++i) n”, “ left[i] = arr[a + i]; n”, “ for (int j = 0; j &lt; indexB; ++j) n”, “ right[j] = arr[b + 1 + j]; n”, “ n”, “ int i = 0, j = 0; n”, “ int k = a; n”, “ while (i &lt; indexA &amp;&amp; j &lt; indexB) { n”, “ if (left[i] &lt;= right[j]) { n”, “ arr[k] = left[i]; n”, “ i++; n”, “ } else { n”, “ arr[k] = right[j]; n”, “ j++; n”, “ } n”, “ k++; n”, “ } n”, “ n”, “ while (i &lt; indexA) { n”, “ arr[k] = left[i]; n”, “ i++; n”, “ k++; n”, “ } n”, “ n”, “ while (j &lt; indexB) { n”, “ arr[k] = right[j]; n”, “ j++; n”, “ k++; n”, “ } n”, “ } n”, “ n”, “ void sort(int arr[], int a, int c) { n”, “ if (a &lt; c) { n”, “ int b = (a + c) / 2; n”, “ n”, “ sort(arr, a, b); n”, “ sort(arr, b + 1, c); n”, “ n”, “ merge(arr, a, b, c); n”, “ n”, “ System.out.println(&quot;Iteration: &quot;); n”, “ printArray(arr); n”, “ } n”, “ } n”, “ n”, “ static void printArray(int arr[]) { n”, “ int n = arr.length; n”, “ for (int i = 0; i &lt; n; ++i) n”, “ System.out.print(arr[i] + &quot; &quot;); n”, “ System.out.println(); n”, “ } n”, “ n”, “ static int[] generateRandomArray(int size) { n”, “ int[] arr = new int[size]; n”, “ Random random = new Random(); n”, “ for (int i = 0; i &lt; size; i++) { n”, “ arr[i] = random.nextInt(100); // numbers are from 0-99 n”, “ } n”, “ return arr; n”, “ } n”, “ n”, “ public static void main(String args[]) { n”, “ int size = 8; // array size n”, “ int[] arr = generateRandomArray(size); n”, “ n”, “ System.out.println(&quot;Original: &quot;); n”, “ printArray(arr); n”, “ n”, “ MergeSortR ob = new MergeSortR(); n”, “ ob.sort(arr, 0, arr.length - 1); n”, “ n”, “ System.out.println(&quot; nSorted: &quot;); n”, “ printArray(arr); n”, “ } n”, “} n”, “ n”, “MergeSortR.main(null)” ] }, { “cell_type”: “code”, “execution_count”: 5, “metadata”: {}, “outputs”: [ { “name”: “stdout”, “output_type”: “stream”, “text”: [ “Original: n”, “14 7 88 52 21 56 37 53 n”, “Iteration: n”, “7 14 88 52 21 56 37 53 n”, “Iteration: n”, “7 14 52 88 21 56 37 53 n”, “Iteration: n”, “7 14 52 88 21 56 37 53 n”, “Iteration: n”, “7 14 52 88 21 56 37 53 n”, “Iteration: n”, “7 14 52 88 21 56 37 53 n”, “Iteration: n”, “7 14 52 88 21 37 53 56 n”, “Iteration: n”, “7 14 21 37 52 53 56 88 n”, “ n”, “Sorted: n”, “7 14 21 37 52 53 56 88 n” ] } ], “source”: [ “// WHILE n”, “ n”, “import java.util.Arrays; n”, “import java.util.Random; n”, “ n”, “public class MergeSortW { n”, “ public static void mergeSort(int[] arr) { n”, “ int n = arr.length; n”, “ int[] temp = new int[n]; n”, “ int value; n”, “ int leftStart; n”, “ n”, “ for (value = 1; value &lt; n; value *= 2) { n”, “ for (leftStart = 0; leftStart &lt; n - 1; leftStart += 2 * value) { n”, “ int mid = Math.min(leftStart + value - 1, n - 1); n”, “ int rightEnd = Math.min(leftStart + 2 * value - 1, n - 1); n”, “ n”, “ merge(arr, temp, leftStart, mid, rightEnd); n”, “ } n”, “ } n”, “ } n”, “ n”, “ public static void merge(int[] arr, int[] temp, int left, int mid, int right) { n”, “ int i = left; n”, “ int j = mid + 1; n”, “ int k = left; n”, “ n”, “ while (i &lt;= mid &amp;&amp; j &lt;= right) { n”, “ if (arr[i] &lt;= arr[j]) { n”, “ temp[k++] = arr[i++]; n”, “ } else { n”, “ temp[k++] = arr[j++]; n”, “ } n”, “ } n”, “ n”, “ while (i &lt;= mid) { n”, “ temp[k++] = arr[i++]; n”, “ } n”, “ n”, “ while (j &lt;= right) { n”, “ temp[k++] = arr[j++]; n”, “ } n”, “ n”, “ for (i = left; i &lt;= right; i++) { n”, “ arr[i] = temp[i]; n”, “ } n”, “ n”, “ System.out.println(&quot;Iteration: &quot;); n”, “ printArray(arr); n”, “ } n”, “ static void printArray(int arr[]) { n”, “ int n = arr.length; n”, “ for (int i = 0; i &lt; n; ++i) n”, “ System.out.print(arr[i] + &quot; &quot;); n”, “ System.out.println(); n”, “ } n”, “ n”, “ static int[] randomArray(int size) { n”, “ int[] arr = new int[size]; n”, “ Random random = new Random(); n”, “ for (int i = 0; i &lt; size; i++) { n”, “ arr[i] = random.nextInt(100); // numbers are from 0-99 n”, “ } n”, “ return arr; n”, “ } n”, “ n”, “ public static void main(String[] args) { n”, “ int size = 8; //array size n”, “ int[] arr = randomArray(size); n”, “ System.out.println(&quot;Original: &quot;); n”, “ printArray(arr); n”, “ n”, “ mergeSort(arr); n”, “ n”, “ System.out.println(&quot; nSorted: &quot;); n”, “ printArray(arr); n”, “ } n”, “ n”, “} n”, “ n”, “// FORMergeSortW.main(null)” ] }, { “cell_type”: “code”, “execution_count”: 6, “metadata”: {}, “outputs”: [ { “name”: “stdout”, “output_type”: “stream”, “text”: [ “Original: n”, “55 52 24 72 38 69 33 58 n”, “Iteration: n”, “52 55 24 72 38 69 33 58 n”, “Iteration: n”, “52 55 24 72 38 69 33 58 n”, “Iteration: n”, “52 55 24 72 38 69 33 58 n”, “Iteration: n”, “52 55 24 72 38 69 33 58 n”, “Iteration: n”, “24 52 55 72 38 69 33 58 n”, “Iteration: n”, “24 52 55 72 33 38 58 69 n”, “Iteration: n”, “24 33 38 52 55 58 69 72 n”, “ n”, “Sorted: n”, “24 33 38 52 55 58 69 72 n” ] } ], “source”: [ “// FOR n”, “ n”, “import java.util.Arrays; n”, “import java.util.Random; n”, “ n”, “public class MergeSortF { n”, “ public static void mergeSort(int[] arr) { n”, “ int n = arr.length; n”, “ int[] temp = new int[n]; n”, “ n”, “ for (int value = 1; value &lt; n; value *= 2) { n”, “ for (int leftStart = 0; leftStart &lt; n - 1; leftStart += 2 * value) { n”, “ int mid = Math.min(leftStart + value - 1, n - 1); n”, “ int rightEnd = Math.min(leftStart + 2 * value - 1, n - 1); n”, “ n”, “ merge(arr, temp, leftStart, mid, rightEnd); n”, “ } n”, “ } n”, “ } n”, “ n”, “ public static void merge(int[] arr, int[] temp, int left, int mid, int right) { n”, “ int i = left; n”, “ int j = mid + 1; n”, “ int k = left; n”, “ n”, “ while (i &lt;= mid &amp;&amp; j &lt;= right) { n”, “ if (arr[i] &lt;= arr[j]) { n”, “ temp[k++] = arr[i++]; n”, “ } else { n”, “ temp[k++] = arr[j++]; n”, “ } n”, “ } n”, “ n”, “ while (i &lt;= mid) { n”, “ temp[k++] = arr[i++]; n”, “ } n”, “ n”, “ while (j &lt;= right) { n”, “ temp[k++] = arr[j++]; n”, “ } n”, “ n”, “ for (i = left; i &lt;= right; i++) { n”, “ arr[i] = temp[i]; n”, “ } n”, “ n”, “ System.out.println(&quot;Iteration: &quot;); n”, “ printArray(arr); n”, “ } n”, “ n”, “ static void printArray(int arr[]) { n”, “ int n = arr.length; n”, “ for (int i = 0; i &lt; n; ++i) n”, “ System.out.print(arr[i] + &quot; &quot;); n”, “ System.out.println(); n”, “ } n”, “ n”, “ static int[] randomArray(int size) { n”, “ int[] arr = new int[size]; n”, “ Random random = new Random(); n”, “ for (int i = 0; i &lt; size; i++) { n”, “ arr[i] = random.nextInt(100); // numbers are from 0-99 n”, “ } n”, “ return arr; n”, “ } n”, “ n”, “ public static void main(String[] args) { n”, “ int size = 8; //array size n”, “ int[] arr = randomArray(size); n”, “ System.out.println(&quot;Original: &quot;); n”, “ printArray(arr); n”, “ n”, “ mergeSort(arr); n”, “ n”, “ System.out.println(&quot; nSorted: &quot;); n”, “ printArray(arr); n”, “ } n”, “} n”, “ n”, “MergeSortF.main(null)” ] } ], “metadata”: { “kernelspec”: { “display_name”: “Java”, “language”: “java”, “name”: “java” }, “language_info”: { “codemirror_mode”: “java”, “file_extension”: “.jshell”, “mimetype”: “text/x-java-source”, “name”: “java”, “pygments_lexer”: “java”, “version”: “20.0.2+9” } }, “nbformat”: 4, “nbformat_minor”: 2 } .",
+            "url": "http://localhost:4000/sortsortsort/2023/11/30/Merge-Sort.ipynb",
+            "relUrl": "/2023/11/30/Merge-Sort.ipynb",
+            "date": " • Nov 30, 2023"
+        }
+        
+    
+  
+    
+        ,"post2": {
+            "title": "Csstest",
+            "content": "Submit Random List Bubble Insertion Selection Merge",
+            "url": "http://localhost:4000/sortsortsort/2023/11/23/csstest.html",
             "relUrl": "/2023/11/23/csstest.html",
             "date": " • Nov 23, 2023"
         }
@@ -12,10 +34,21 @@
     
   
     
-        ,"post1": {
+        ,"post3": {
+            "title": "Sorting Algorithms Test",
+            "content": "Globals . // Initialize test array for sorting public int[] test = new int[]{1, 5, 6, 3, 78, 2, 2}; // Method for displaying array public String printArr(int[] arr) { // Show start of list String text = &quot;[&quot;; // Add elements to list String for (int i = 0; i &lt; arr.length; i ++) { text += arr[i]; // Add commas if not last element in list if (i != arr.length - 1) { text += &quot;, &quot;; } } // Add end of list text += &quot;]&quot;; return text; } . Selection Sort . For loop . private static int[] selectionFor(int[] arr) { // For loop to iterate through whole array, except last value because it will already be sorted by then for (int i = 0; i &lt; arr.length - 1; i ++) { // Define the minimum index by setting it to the first element not iterated yet int minIndex = i; // For loop to iterate through all elements after previous run for (int j = i + 1; j &lt; arr.length; j ++) { // If selected value is lower than current minimum, set the new minimum if (arr[j] &lt; arr[minIndex]) { minIndex = j; } } // If the minimum is different from the current value, swap them if (minIndex != i) { int temp = arr[i]; arr[i] = arr[minIndex]; arr[minIndex] = temp; } } return arr; } printArr(selectionFor(test)); . [1, 2, 2, 3, 5, 6, 78] . While Loop . private static int[] selectionWhile(int[] arr) { // While loop to iterate through whole array, except last value because it will already be sorted by then int i = 0; while (i &lt; arr.length - 1) { // Define the minimum index by setting it to the first element not iterated yet int minIndex = i; // While loop to iterate through all elements after previous run int j = i + 1; while (j &lt; arr.length) { // If selected value is lower than current minimum, set the new minimum if (arr[j] &lt; arr[minIndex]) { minIndex = j; } j += 1; } // If the minimum is different from the current value, swap them if (minIndex != i) { int temp = arr[i]; arr[i] = arr[minIndex]; arr[minIndex] = temp; } i += 1; } return arr; } printArr(insertionWhile(test)); . [1, 2, 2, 3, 5, 6, 78] . Recursive . private static int[] selectionRecur(int[] arr, int n) { // If passing the last element in the array, stop if (n == arr.length - 1) { return arr; } // Set minimum index to current int minIndex = n; // If different value is less than current minimum, set minIndex to that value&#39;s index for (int j = n + 1; j &lt; arr.length; j++) { if (arr[j] &lt; arr[minIndex]) { minIndex = j; } } // Swap minimum with initial index if (minIndex != n) { int temp = arr[n]; arr[n] = arr[minIndex]; arr[minIndex] = temp; } // Recursive call for the next index selectionRecur(arr, n + 1); return arr; } printArr(selectionRecur(test, 0)); . [1, 2, 2, 3, 5, 6, 78] . Bubble Sort . For loop . private static int[] bubbleFor(int[] arr) { // Iterate through list for (int i = 0; i &lt; arr.length - 1; i ++) { // Iterate through previous element in list for (int j = 0; j &lt; arr.length - i - 1; j ++) { // Swap if necessary if (arr[j] &gt; arr[j + 1]) { int temp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = temp; } } } return arr; } printArr(bubbleFor(test)); . [1, 2, 2, 3, 5, 6, 78] . While loop . private static int[] bubbleWhile(int[] arr) { int i = 0; while (i &lt; arr.length - 1) { int j = 0; while (j &lt; arr.length - i - 1) { if (arr[j] &gt; arr[j + 1]) { int temp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = temp; } j++; } i++; } return arr; } printArr(bubbleWhile(test)); . [1, 2, 2, 3, 5, 6, 78] . Recursive . private static int[] bubbleRecur(int[] arr) { for (int i = 0; i &lt; arr.length - 1; i ++) { if (arr[i] &gt; arr[i + 1]) { int temp = arr[i]; arr[i] = arr[i + 1]; arr[i + 1] = temp; bubbleRecur(arr); } } return arr; } printArr(bubbleRecur(test)); . [1, 2, 2, 3, 5, 6, 78] . Inheritance Testing . . import java.util.ArrayList; public class Sort { double time; int[] array; ArrayList swaps = new ArrayList(); // array setter public void setArray(int[] arr) { this.array = arr; } // Method for adding each swap public void swap(int i, int j) { this.swaps.add(i); this.swaps.add(j); } // Method for displaying array public String printArr() { // Show start of list String text = &quot;[&quot;; int[] arr = this.array; // Add elements to list String for (int i = 0; i &lt; arr.length; i ++) { text += arr[i]; // Add commas if not last element in list if (i != arr.length - 1) { text += &quot;, &quot;; } } // Add end of list text += &quot;]&quot;; return text; } } public class Selection extends Sort { int[] arr = super.array; public int[] forLoop() { int[] arr = this.arr; // For loop to iterate through whole array, except last value because it will already be sorted by then for (int i = 0; i &lt; arr.length - 1; i ++) { // Define the minimum index by setting it to the first element not iterated yet int minIndex = i; // For loop to iterate through all elements after previous run for (int j = i + 1; j &lt; arr.length; j ++) { // If selected value is lower than current minimum, set the new minimum if (arr[j] &lt; arr[minIndex]) { minIndex = j; } } // If the minimum is different from the current value, swap them if (minIndex != i) { int temp = arr[i]; arr[i] = arr[minIndex]; arr[minIndex] = temp; } } return arr; } private int[] whileLoop() { int[] arr = this.arr; // While loop to iterate through whole array, except last value because it will already be sorted by then int i = 0; while (i &lt; arr.length - 1) { // Define the minimum index by setting it to the first element not iterated yet int minIndex = i; // While loop to iterate through all elements after previous run int j = i + 1; while (j &lt; arr.length) { // If selected value is lower than current minimum, set the new minimum if (arr[j] &lt; arr[minIndex]) { minIndex = j; } j += 1; } // If the minimum is different from the current value, swap them if (minIndex != i) { int temp = arr[i]; arr[i] = arr[minIndex]; arr[minIndex] = temp; } i += 1; } return arr; } private int[] recursive() { int[] arr = this.arr; return recursiveSwap(0); } private int[] recursiveSwap(int n) { // If passing the last element in the array, stop if (n == arr.length - 1) { return arr; } // Set minimum index to current int minIndex = n; // If different value is less than current minimum, set minIndex to that value&#39;s index for (int j = n + 1; j &lt; arr.length; j++) { if (arr[j] &lt; arr[minIndex]) { minIndex = j; } } // Swap minimum with initial index if (minIndex != n) { int temp = arr[n]; arr[n] = arr[minIndex]; arr[minIndex] = temp; } // Recursive call for the next index recursiveSwap(arr, n + 1); return arr; } } Sort algorithm = new Selection(); // algorithm.setArray([0, 3, 2, 1]); .",
+            "url": "http://localhost:4000/sortsortsort/2023/11/17/algorithms_IPYNB_2_.html",
+            "relUrl": "/2023/11/17/algorithms_IPYNB_2_.html",
+            "date": " • Nov 17, 2023"
+        }
+        
+    
+  
+    
+        ,"post4": {
             "title": "Project Plans",
             "content": "SASS . Wireframe | . Example image . Fibonacci . something or other | Different loops under the same class (methods &amp; inheritance) | . Sorting . bubble | insertion | selection | merge | l | . Inheritance . We will be using interfaces or an abstract class | Share user inputted array, size | . Analyze . Count times of all methods, different page for comparing average ratios for time “On average, selection sort is 1.5x faster than bubble sort” or something | . | .",
-            "url": "http://localhost:4100/nighthawksorters/2023/11/15/ideation.html",
+            "url": "http://localhost:4000/sortsortsort/2023/11/15/ideation.html",
             "relUrl": "/2023/11/15/ideation.html",
             "date": " • Nov 15, 2023"
         }
@@ -30,7 +63,7 @@
       ,"page1": {
           "title": "About Us",
           "content": "Creators of Alien World .",
-          "url": "http://localhost:4100/nighthawksorters/about/",
+          "url": "http://localhost:4000/sortsortsort/about/",
           "relUrl": "/about/",
           "date": ""
       }
@@ -45,7 +78,7 @@
       ,"page4": {
           "title": "",
           "content": "Invert Idle Barking Walking",
-          "url": "http://localhost:4100/nighthawksorters/navigation/game.html",
+          "url": "http://localhost:4000/sortsortsort/navigation/game.html",
           "relUrl": "/navigation/game.html",
           "date": ""
       }
@@ -55,8 +88,8 @@
   
       ,"page5": {
           "title": "Sorting Algorithms & Inheritance",
-          "content": "",
-          "url": "http://localhost:4100/nighthawksorters/",
+          "content": ". Submit Random List Bubble Insertion Selection Merge",
+          "url": "http://localhost:4000/sortsortsort/",
           "relUrl": "/",
           "date": ""
       }
@@ -77,7 +110,7 @@
       ,"page10": {
           "title": "Time Box",
           "content": "",
-          "url": "http://localhost:4100/nighthawksorters/time/",
+          "url": "http://localhost:4000/sortsortsort/time/",
           "relUrl": "/time/",
           "date": ""
       }
