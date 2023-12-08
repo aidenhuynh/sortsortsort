@@ -1,11 +1,12 @@
 function setList() {
     var list = document.getElementById('list').value.split(",")
     const len = list.length
-    if (len > 5) {
-        alert("5 elements max bruh")
+    
+    // if (len > 5) {
+    //     alert("5 elements max bruh")
 
-        return
-    }
+    //     return
+    // }
 
     for (let i = 0; i < len; i ++) {
         var item = list[i]
@@ -24,10 +25,20 @@ function setList() {
 }
 
 function setRandList() {
-    const max = 100
-    const n = 5
+    const max = 99
+    const n = document.getElementById('randLen').value
     var list = []
     
+    // Three checks for a valid integer:
+    // 1. Is a number, using isNaN because type is a string due to being from an input
+    // 2. Is an integer, comparing parsed to original
+    // 3. Is positive, comparing abs to original
+    if (isNaN(n) || parseInt(n, 10) != n || n != Math.abs(n)) {
+        alert("Invalid number of elements, please enter a valid positive integer")
+
+        return
+    }
+
     for (let i = 0; i < n; i ++) {
         list.push(Math.floor(Math.random() * (max + 1)))
     }
@@ -129,6 +140,12 @@ function eventListeners() {
     document.getElementById("list").addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             setList()
+        }
+    })
+
+    document.getElementById("randLen").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            setRandList()
         }
     })
 

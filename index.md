@@ -16,6 +16,7 @@ hide: true
             <button id="submit" class="main-button">Submit</button>
         </div>
         <div class="rightButtonContainer" id="rightButtonContainer">
+            <input id="randLen" class="input" placeholder="Enter length">
             <button id="randList" class="main-button" style="right:0%">Random List</button>
         </div>
     </div>
