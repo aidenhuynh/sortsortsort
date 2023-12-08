@@ -1,17 +1,17 @@
 function setList() {
+    // Get the inputted array and turn into array
     var list = document.getElementById('list').value.split(",")
     const len = list.length
-    
-    // if (len > 5) {
-    //     alert("5 elements max bruh")
-
-    //     return
-    // }
 
     for (let i = 0; i < len; i ++) {
         var item = list[i]
-
         
+        if (isNaN(item) || parseInt(item, 10) != item || item != Math.abs(item)) {
+            alert("only valid integers bromie")
+            
+            return
+        }
+
         if (item.includes(" ")) {
             list[i] = item.replace(/\s/g, '')
         }
