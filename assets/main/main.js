@@ -171,7 +171,8 @@ function eventListeners() {
 }
 
 function getSwaps(sort, list){
-    fetch(`http://localhost:8085/api/${sort}/while`, {
+    console.log(sort);
+    fetch(`http://localhost:8085/api/${sort}/for`, {
         method: "POST",
         headers: {
             'Content-Type':'application/json',
@@ -179,6 +180,7 @@ function getSwaps(sort, list){
         body: JSON.stringify(list)
     }).then(response => response.json())
     .then(responseData => {
+        console.log(responseData)
         swaps = responseData.swaps
         return responseData.swaps
     })
