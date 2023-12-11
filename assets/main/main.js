@@ -25,7 +25,7 @@ function setList() {
 }
 
 function setRandList() {
-    const max = 99
+    const max = 9999
     const n = document.getElementById('randLen').value
     var list = []
     
@@ -39,8 +39,22 @@ function setRandList() {
         return
     }
 
+    if (n > max + 1) {
+        alert("You may only have a maximum of " + max + " elements.")
+
+        return
+    }
+
+
     for (let i = 0; i < n; i ++) {
-        list.push(Math.floor(Math.random() * (max + 1)))
+        const value = Math.floor(Math.random() * (max + 1))
+
+        if (!list.includes(value)) {
+            list.push(value)
+        }
+        else {
+            i --
+        }
     }
 
     makeList(list)
