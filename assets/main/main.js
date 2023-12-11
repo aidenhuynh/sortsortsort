@@ -43,6 +43,8 @@ function setRandList() {
         list.push(Math.floor(Math.random() * (max + 1)))
     }
 
+    document.getElementById('list').value = JSON.stringify(list).substring(1, list.length-1);
+
     makeList(list)
 }
 
@@ -171,6 +173,7 @@ function eventListeners() {
 }
 
 function getSwaps(sort, list){
+    console.log("list" + list);
     console.log(sort);
     fetch(`http://localhost:8085/api/${sort}/for`, {
         method: "POST",
