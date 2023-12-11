@@ -128,9 +128,12 @@ var StyleShift = function (item1, item2, swaps) {
     }
 }
 
+var swaps;
+
 function eventListeners() {
     document.getElementById("submit").addEventListener("click", function() {
         setList()
+        getSwaps("insertion" )
     })
 
     document.getElementById("randList").addEventListener("click", function() {
@@ -158,11 +161,28 @@ function eventListeners() {
 
     for (const method of ["bubble", "insertion", "selection", "merge"]) {
         document.getElementById(method).addEventListener("click", function() {
-            sort(method)
+            getSwaps(method, document.getElementById('list').value.split(","))
+            console.log(swaps)
+            item1 = document.getElementById(`item${swaps[0]}`)
+            item2 = document.getElementById(`item${swaps[1]}`)
+            Animation(item1, item2).done(function() {StyleShift(item1, item2, swaps)})
         })
     }
 }
 
-function sort(type) {
-    console.log("backend request: sorting with " + type)
+function getSwaps(sort, list){
+    fetch(`http://localhost:8085/api/${sort}/while`, {
+        method: "POST",
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(list)
+    }).then(response => response.json())
+    .then(responseData => {
+        swaps = responseData.swaps
+        return responseData.swaps
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    })
 }
