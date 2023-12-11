@@ -57,6 +57,8 @@ function setRandList() {
         }
     }
 
+    document.getElementById('list').value = JSON.stringify(list).substring(1, list.length-1);
+
     makeList(list)
 }
 
@@ -185,7 +187,9 @@ function eventListeners() {
 }
 
 function getSwaps(sort, list){
-    fetch(`http://localhost:8085/api/${sort}/while`, {
+    console.log("list" + list);
+    console.log(sort);
+    fetch(`http://localhost:8085/api/${sort}/for`, {
         method: "POST",
         headers: {
             'Content-Type':'application/json',
@@ -193,6 +197,7 @@ function getSwaps(sort, list){
         body: JSON.stringify(list)
     }).then(response => response.json())
     .then(responseData => {
+        console.log(responseData)
         swaps = responseData.swaps
         return responseData.swaps
     })
