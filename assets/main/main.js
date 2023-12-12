@@ -56,9 +56,7 @@ function setRandList() {
             i --
         }
     }
-
-    document.getElementById('list').value = JSON.stringify(list).substring(1, list.length-1);
-
+    document.getElementById('list').value = JSON.stringify(list).substring(1, JSON.stringify(list).length-1)
     makeList(list)
 }
 
