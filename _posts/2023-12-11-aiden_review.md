@@ -106,8 +106,7 @@ type: review
 ![commits]({{site.baseurl}}/images/aiden/commits.png)
 
 ## Video:
-<iframe src="https://drive.google.com/file/d/1FtB2JTDNd5u2qorQO7ifWVUbPY95u_1A/preview" width="640" height="480"></iframe>
-
+<iframe src="https://drive.google.com/file/d/1BnfJDzmkSS0JGXpt4Ap0D4pgvdszqo9d/preview" width="640" height="480"></iframe>
 ## Reflection:
 ### Learning:
 I have definitely gotten a lot more used to Java syntax (I don't forget semicolons every single time now), as I have done a lot more work with it than before. This is the most OOP I have done and honestly, I still don't enjoy doing it.
